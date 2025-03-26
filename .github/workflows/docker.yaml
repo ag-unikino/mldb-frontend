@@ -5,7 +5,7 @@ on:
   push:
 
 env:
-  image-name: ghcr.io/unikino-ag/mldb-frontend
+  image-name: ghcr.io/ag-unikino/mldb-frontend
 
 jobs:
   build:

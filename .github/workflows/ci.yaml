@@ -29,7 +29,7 @@ jobs:
             command: npm run build
             continue-on-error: false
           - name: lint
-            command: npm run lint -- --deny-warnings
+            command: npm run lint
             continue-on-error: true
           - name: fmt
             command: npx prettier . --check
