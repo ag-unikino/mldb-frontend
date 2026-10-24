@@ -1,0 +1,15 @@
+{
+  "app": {
+    "title": "Verleiherdatenbank"
+  },
+  "nav": {
+    "home": "Start",
+    "search": "Suche"
+  },
+  "home": {
+    "title": "Startseite"
+  },
+  "search": {
+    "title": "Suchergebnisse"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "app": {
+    "title": "Distributor database"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search"
+  },
+  "home": {
+    "title": "Home page"
+  },
+  "search": {
+    "title": "Search results"
+  }
+}
