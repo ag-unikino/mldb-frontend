@@ -4,11 +4,14 @@ import { useI18n } from 'vue-i18n'
 import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
+import { useAuthStore } from '../stores/auth'
+import LockedHint from './LockedHint.vue'
 
 const props = defineProps<{ request: FilmRequest }>()
 
 const { t } = useI18n()
 const { formatDate } = useDateFormat()
+const auth = useAuthStore()
 
 const notice = computed(() => getActiveNote(getDistributorById(props.request.distributorId)))
 
@@ -28,7 +31,8 @@ function distributorName(id: number): string {
       <dd>{{ formatDate(request.answeredAt) }}</dd>
     </template>
     <dt>{{ t('requests.details.contact') }}</dt>
-    <dd v-if="request.contact">
+    <dd v-if="!auth.isLoggedIn"><LockedHint /></dd>
+    <dd v-else-if="request.contact">
       {{ request.contact.name }} ·
       <a :href="'mailto:' + request.contact.email">{{ request.contact.email }}</a>
     </dd>

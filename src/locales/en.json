@@ -10,7 +10,8 @@
   },
   "auth": {
     "login": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "contactsLocked": "Visible after logging in"
   },
   "home": {
     "title": "Home page",

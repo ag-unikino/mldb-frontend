@@ -6,9 +6,12 @@ import { getActiveNote, getDistributorById } from '../api/distributors'
 import { getFilmById } from '../api/films'
 import { getGrantedFilmIds } from '../api/requests'
 import DistributorNotice from '../components/DistributorNotice.vue'
+import LockedHint from '../components/LockedHint.vue'
+import { useAuthStore } from '../stores/auth'
 
 const { t, locale } = useI18n()
 const route = useRoute()
+const auth = useAuthStore()
 
 const distributor = computed(() => {
   const id = Number(route.params.id)
@@ -37,7 +40,8 @@ const films = computed(() => {
 
       <section>
         <h2>{{ t('distributors.contacts') }}</h2>
-        <ul v-if="distributor.contacts?.length" class="plain">
+        <LockedHint v-if="!auth.isLoggedIn" />
+        <ul v-else-if="distributor.contacts?.length" class="plain">
           <li v-for="contact in distributor.contacts" :key="contact.email">
             <strong>{{ contact.name }}</strong>
             <span v-if="contact.role" class="subtle"> · {{ contact.role }}</span>

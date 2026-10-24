@@ -10,7 +10,8 @@
   },
   "auth": {
     "login": "Anmelden",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "contactsLocked": "Nach der Anmeldung sichtbar"
   },
   "home": {
     "title": "Startseite",

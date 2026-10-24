@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import RequestDetails from './RequestDetails.vue'
 import { getActiveNote, getDistributorById } from '../api/distributors'
@@ -7,6 +7,7 @@ import type { FilmRequest, RequestStatus } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
 import { useMediaQuery } from '../composables/useMediaQuery'
 import { matches } from '../utils/text'
+import { useAuthStore } from '../stores/auth'
 
 type SortKey = 'date' | 'status' | 'distributor' | 'format' | 'language' | 'cinema'
 type SortDirection = 'asc' | 'desc'
@@ -18,6 +19,7 @@ const props = defineProps<{ requests: FilmRequest[] }>()
 const { t, locale } = useI18n()
 const { formatDate } = useDateFormat()
 const isCardLayout = useMediaQuery(CARD_LAYOUT_QUERY)
+const auth = useAuthStore()
 
 const statusIcons: Record<RequestStatus, string> = {
   open: '●',
@@ -27,8 +29,10 @@ const statusIcons: Record<RequestStatus, string> = {
 
 const statuses: RequestStatus[] = ['open', 'granted', 'declined']
 const statusRank: Record<RequestStatus, number> = { open: 0, granted: 1, declined: 2 }
-const sortKeys: SortKey[] = ['date', 'status', 'distributor', 'format', 'language', 'cinema']
-
+const allSortKeys: SortKey[] = ['date', 'status', 'distributor', 'format', 'language', 'cinema']
+const sortKeys = computed(() =>
+  auth.isLoggedIn ? allSortKeys : allSortKeys.filter((key) => key !== 'cinema'),
+)
 const sortKey = ref<SortKey>('date')
 const sortDirection = ref<SortDirection>('desc')
 const statusFilter = ref<RequestStatus | 'all'>('all')
@@ -131,6 +135,15 @@ function sortIndicator(key: SortKey): string {
   if (sortKey.value !== key) return ''
   return sortDirection.value === 'asc' ? '▲' : '▼'
 }
+
+watch(
+  () => auth.isLoggedIn,
+  (loggedIn) => {
+    if (loggedIn) return
+    cinemaFilter.value = ''
+    if (sortKey.value === 'cinema') sortKey.value = 'date'
+  },
+)
 </script>
 
 <template>
@@ -152,7 +165,7 @@ function sortIndicator(key: SortKey): string {
           {{ t('requests.filters.distributor') }}
           <input v-model="distributorFilter" type="search" />
         </label>
-        <label>
+        <label v-if="auth.isLoggedIn">
           {{ t('requests.filters.cinema') }}
           <input v-model="cinemaFilter" type="search" />
         </label>
@@ -203,8 +216,15 @@ function sortIndicator(key: SortKey): string {
             >
           </p>
           <p class="subtle">
-            {{ t('requests.formats.' + request.format) }} · {{ request.language }} ·
-            {{ request.cinema }}
+            {{
+              [
+                t('requests.formats.' + request.format),
+                request.language,
+                auth.isLoggedIn ? request.cinema : '',
+              ]
+                .filter(Boolean)
+                .join(' · ')
+            }}
           </p>
           <button
             type="button"
@@ -275,10 +295,10 @@ function sortIndicator(key: SortKey): string {
                 </td>
                 <td>{{ t('requests.formats.' + request.format) }}</td>
                 <td>{{ request.language }}</td>
-                <td>{{ request.cinema }}</td>
+                <td v-if="auth.isLoggedIn">{{ request.cinema }}</td>
               </tr>
               <tr v-show="isExpanded(request.id)" :id="detailsId(request.id)" class="details-row">
-                <td colspan="7">
+                <td :colspan="sortKeys.length + 1">
                   <RequestDetails :request="request" />
                 </td>
               </tr>

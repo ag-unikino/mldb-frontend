@@ -5,11 +5,14 @@ import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
 import DistributorNotice from './DistributorNotice.vue'
+import { useAuthStore } from '../stores/auth'
+import LockedHint from './LockedHint.vue'
 
 const props = defineProps<{ requests: FilmRequest[] }>()
 
 const { t } = useI18n()
 const { formatDate, formatRelative } = useDateFormat()
+const auth = useAuthStore()
 
 function answeredDate(request: FilmRequest): string {
   return request.answeredAt ?? request.requestedAt
@@ -54,7 +57,8 @@ const declinedCount = computed(() => props.requests.filter((r) => r.status === '
           })
         }}
       </p>
-      <p v-if="lastGranted.contact">
+      <p v-if="!auth.isLoggedIn">{{ t('summary.contact') }}: <LockedHint /></p>
+      <p v-else-if="lastGranted.contact">
         {{ t('summary.contact') }}: {{ lastGranted.contact.name }} ·
         <a :href="'mailto:' + lastGranted.contact.email">{{ lastGranted.contact.email }}</a>
       </p>
