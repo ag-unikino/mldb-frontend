@@ -2,11 +2,16 @@
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import SearchBar from './components/SearchBar.vue'
+import { SUPPORTED_LOCALES, setLocale, type AppLocale } from './i18n'
 import { useAuthStore } from './stores/auth'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const auth = useAuthStore()
+
+function onLocaleChange(event: Event) {
+  setLocale((event.target as HTMLSelectElement).value as AppLocale)
+}
 </script>
 
 <template>
@@ -29,6 +34,16 @@ const auth = useAuthStore()
             {{ t('auth.login') }}
           </button>
         </div>
+        <select
+          class="lang-select"
+          :value="locale"
+          :aria-label="t('app.language')"
+          @change="onLocaleChange"
+        >
+          <option v-for="code in SUPPORTED_LOCALES" :key="code" :value="code" :lang="code">
+            {{ code.toUpperCase() }}
+          </option>
+        </select>
       </div>
     </div>
   </header>
@@ -111,9 +126,22 @@ const auth = useAuthStore()
   padding-bottom: var(--space-6);
 }
 
+.account-button,
+.lang-select {
+  height: 2.25rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.lang-select {
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+}
+
 @media (max-width: 46rem) {
   .app-end {
     order: 1;
+    gap: var(--space-3);
   }
 
   .app-search {

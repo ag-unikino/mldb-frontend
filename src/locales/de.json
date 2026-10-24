@@ -1,6 +1,7 @@
 {
   "app": {
-    "title": "Verleiherdatenbank"
+    "title": "Verleiherdatenbank",
+    "language": "Sprache"
   },
   "nav": {
     "home": "Start",

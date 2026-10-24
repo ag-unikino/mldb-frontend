@@ -1,6 +1,7 @@
 {
   "app": {
-    "title": "Distributor database"
+    "title": "Distributor database",
+    "language": "Language"
   },
   "nav": {
     "home": "Home",
