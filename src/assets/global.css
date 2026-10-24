@@ -63,6 +63,7 @@ a {
 }
 
 input,
+select,
 button {
   font: inherit;
   padding: var(--space-2) var(--space-3);
@@ -70,7 +71,8 @@ button {
   border-radius: var(--radius);
 }
 
-input {
+input,
+select {
   background: var(--color-surface);
   color: var(--color-text);
 }

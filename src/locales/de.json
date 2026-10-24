@@ -29,6 +29,14 @@
   },
   "requests": {
     "title": "Anfragen",
+    "noMatches": "Keine Anfragen passen zu den Filtern.",
+    "filters": {
+      "status": "Status",
+      "all": "Alle",
+      "distributor": "Verleiher",
+      "cinema": "Kino",
+      "reset": "Filter zurücksetzen"
+    },
     "empty": "Zu diesem Film gibt es noch keine Anfragen.",
     "toggle": "Details ein- oder ausklappen",
     "noticeMarker": "Aktueller Hinweis zum Verleiher",

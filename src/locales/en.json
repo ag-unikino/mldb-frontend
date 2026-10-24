@@ -29,6 +29,14 @@
   },
   "requests": {
     "title": "Requests",
+    "noMatches": "No requests match the filters.",
+    "filters": {
+      "status": "Status",
+      "all": "All",
+      "distributor": "Distributor",
+      "cinema": "Cinema",
+      "reset": "Reset filters"
+    },
     "empty": "Nobody has requested this film yet.",
     "toggle": "Expand or collapse details",
     "noticeMarker": "Current notice about the distributor",
