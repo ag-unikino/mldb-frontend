@@ -25,8 +25,9 @@ const { t } = useI18n()
 
 .app-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-2) var(--space-6);
   padding-top: var(--space-3);
   padding-bottom: var(--space-3);
 }
@@ -43,7 +44,7 @@ const { t } = useI18n()
 }
 
 .app-search {
-  flex: 1;
+  flex: 1 1 16rem;
 }
 
 .page {
