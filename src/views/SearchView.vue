@@ -21,7 +21,10 @@ const results = computed(() => searchFilms(query.value))
       <p v-if="results.length === 0">{{ $t('search.noResults') }}</p>
       <ul v-else>
         <li v-for="film in results" :key="film.id">
-          <strong>{{ film.originalTitle }}</strong> ({{ film.year }})
+          <RouterLink :to="{ name: 'film', params: { id: film.id } }">
+            <strong>{{ film.originalTitle }}</strong>
+          </RouterLink>
+          ({{ film.year }})
           <br />
           {{ film.germanTitle }} · {{ film.distributor }}
         </li>

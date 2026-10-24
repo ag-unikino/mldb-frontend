@@ -65,3 +65,7 @@ export function searchFilms(query: string): Film[] {
     [film.originalTitle, film.germanTitle].some((title) => title.toLowerCase().includes(q)),
   )
 }
+
+export function getFilmById(id: number): Film | undefined {
+  return films.find((film) => film.id === id)
+}

@@ -17,5 +17,11 @@
     "resultsFor": "Ergebnisse für „{query}“",
     "noQuery": "Bitte einen Suchbegriff eingeben.",
     "noResults": "Keine Treffer gefunden."
+  },
+  "film": {
+    "germanTitle": "Deutscher Titel",
+    "year": "Jahr",
+    "distributor": "Verleiher",
+    "notFound": "Film nicht gefunden."
   }
 }
