@@ -29,6 +29,8 @@
   },
   "requests": {
     "title": "Anfragen",
+    "sortBy": "Sortieren nach",
+    "sortDirection": "Sortierrichtung umkehren",
     "noMatches": "Keine Anfragen passen zu den Filtern.",
     "filters": {
       "status": "Status",

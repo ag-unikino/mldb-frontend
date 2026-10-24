@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import RequestDetails from './RequestDetails.vue'
 import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest, RequestStatus } from '../api/requests'
+import { useDateFormat } from '../composables/useDateFormat'
+import { useMediaQuery } from '../composables/useMediaQuery'
 
 type SortKey = 'date' | 'status' | 'distributor' | 'format' | 'language' | 'cinema'
 type SortDirection = 'asc' | 'desc'
 
+const CARD_LAYOUT_QUERY = '(pointer: coarse) and (orientation: portrait) and (max-width: 700px)'
+
 const props = defineProps<{ requests: FilmRequest[] }>()
 
 const { t, locale } = useI18n()
+const { formatDate } = useDateFormat()
+const isCardLayout = useMediaQuery(CARD_LAYOUT_QUERY)
 
 const statusIcons: Record<RequestStatus, string> = {
   open: '●',
@@ -43,12 +50,6 @@ function toggle(id: number) {
 
 function detailsId(id: number): string {
   return 'request-details-' + id
-}
-
-function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium', timeZone: 'UTC' }).format(
-    new Date(iso),
-  )
 }
 
 function distributorName(id: number): string {
@@ -125,6 +126,10 @@ function setSort(key: SortKey) {
   }
 }
 
+function toggleDirection() {
+  sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc'
+}
+
 function ariaSort(key: SortKey): 'ascending' | 'descending' | 'none' {
   if (sortKey.value !== key) return 'none'
   return sortDirection.value === 'asc' ? 'ascending' : 'descending'
@@ -163,7 +168,66 @@ function sortIndicator(key: SortKey): string {
           {{ t('requests.filters.reset') }}
         </button>
       </div>
+      <div v-if="isCardLayout" class="filters">
+        <label>
+          {{ t('requests.sortBy') }}
+          <select v-model="sortKey">
+            <option v-for="key in sortKeys" :key="key" :value="key">
+              {{ t('requests.columns.' + key) }}
+            </option>
+          </select>
+        </label>
+        <button
+          type="button"
+          class="reset"
+          :aria-label="t('requests.sortDirection')"
+          @click="toggleDirection"
+        >
+          <span aria-hidden="true">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </button>
+      </div>
+
       <p v-if="visibleRequests.length === 0" class="empty">{{ t('requests.noMatches') }}</p>
+
+      <ul v-else-if="isCardLayout" class="cards">
+        <li v-for="request in visibleRequests" :key="request.id" class="card">
+          <div class="card-head">
+            <span class="date">{{ formatDate(request.requestedAt) }}</span>
+            <span class="status" :class="'status--' + request.status">
+              <span aria-hidden="true">{{ statusIcons[request.status] }}</span>
+              {{ t('requests.status.' + request.status) }}
+            </span>
+          </div>
+          <p class="card-distributor">
+            {{ distributorName(request.distributorId) }}
+            <span
+              v-if="noticeFor(request.distributorId)"
+              class="notice-marker"
+              role="img"
+              :aria-label="t('requests.noticeMarker')"
+              >⚠</span
+            >
+          </p>
+          <p class="subtle">
+            {{ t('requests.formats.' + request.format) }} · {{ request.language }} ·
+            {{ request.cinema }}
+          </p>
+          <button
+            type="button"
+            class="card-toggle"
+            :aria-expanded="isExpanded(request.id)"
+            :aria-controls="detailsId(request.id)"
+            @click="toggle(request.id)"
+          >
+            <span aria-hidden="true">{{ isExpanded(request.id) ? '▾' : '▸' }}</span>
+            {{ t('requests.columns.details') }}
+          </button>
+          <div v-show="isExpanded(request.id)" :id="detailsId(request.id)" class="card-details">
+            <RequestDetails :request="request" />
+          </div>
+        </li>
+      </ul>
+
       <div v-else class="table-wrap">
         <table>
           <thead>
@@ -218,38 +282,7 @@ function sortIndicator(key: SortKey): string {
               </tr>
               <tr v-show="isExpanded(request.id)" :id="detailsId(request.id)" class="details-row">
                 <td colspan="7">
-                  <dl class="details">
-                    <template v-if="noticeFor(request.distributorId)">
-                      <dt>{{ t('requests.details.distributorNotice') }}</dt>
-                      <dd>{{ noticeFor(request.distributorId)?.text }}</dd>
-                    </template>
-                    <template v-if="request.answeredAt">
-                      <dt>{{ t('requests.details.answeredAt') }}</dt>
-                      <dd>{{ formatDate(request.answeredAt) }}</dd>
-                    </template>
-                    <dt>{{ t('requests.details.contact') }}</dt>
-                    <dd v-if="request.contact">
-                      {{ request.contact.name }} ·
-                      <a :href="'mailto:' + request.contact.email">{{ request.contact.email }}</a>
-                    </dd>
-                    <dd v-else class="subtle">{{ t('requests.details.noContact') }}</dd>
-                    <template v-if="request.adRights">
-                      <dt>{{ t('requests.details.adRights') }}</dt>
-                      <dd>{{ request.adRights }}</dd>
-                    </template>
-                    <template v-if="request.comment">
-                      <dt>{{ t('requests.details.comment') }}</dt>
-                      <dd>{{ request.comment }}</dd>
-                    </template>
-                    <template v-if="request.declineReason">
-                      <dt>{{ t('requests.details.declineReason') }}</dt>
-                      <dd>{{ request.declineReason }}</dd>
-                    </template>
-                    <template v-if="request.referredToDistributorId !== undefined">
-                      <dt>{{ t('requests.details.referredTo') }}</dt>
-                      <dd>{{ distributorName(request.referredToDistributorId) }}</dd>
-                    </template>
-                  </dl>
+                  <RequestDetails :request="request" />
                 </td>
               </tr>
             </template>
@@ -274,6 +307,10 @@ h2 {
   color: var(--color-text-muted);
 }
 
+.subtle {
+  color: var(--color-text-muted);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -286,6 +323,16 @@ h2 {
   align-items: center;
   gap: var(--space-2);
   color: var(--color-text-muted);
+}
+
+.filters input {
+  width: 12rem;
+}
+
+.reset {
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: var(--color-border);
 }
 
 .table-wrap {
@@ -356,23 +403,47 @@ tbody tr:hover {
   white-space: normal;
 }
 
-.details {
+.cards {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: var(--space-1) var(--space-6);
+  gap: var(--space-3);
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.details dt {
+.card {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.card p {
+  margin: var(--space-1) 0 0;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.card-distributor {
+  font-weight: 600;
+}
+
+.card-toggle {
+  margin-top: var(--space-2);
+  padding: var(--space-2) 0;
   color: var(--color-text-muted);
+  background: transparent;
+  border: 0;
 }
 
-.details dd {
-  margin: 0;
-}
-
-.subtle {
-  color: var(--color-text-muted);
+.card-details {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
 }
 
 .status {
@@ -400,15 +471,5 @@ tbody tr:hover {
 .notice-marker {
   color: var(--color-warning);
   cursor: help;
-}
-
-.filters input {
-  width: 12rem;
-}
-
-.reset {
-  color: var(--color-text-muted);
-  background: transparent;
-  border-color: var(--color-border);
 }
 </style>
