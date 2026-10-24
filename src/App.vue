@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import SearchBar from './components/SearchBar.vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const { t } = useI18n()
 </script>
@@ -9,7 +12,7 @@ const { t } = useI18n()
   <header class="app-header">
     <div class="container app-header__inner">
       <RouterLink to="/" class="app-title">{{ t('app.title') }}</RouterLink>
-      <SearchBar class="app-search" />
+      <SearchBar v-if="route.name !== 'home'" class="app-search" />
     </div>
   </header>
   <div class="container page">

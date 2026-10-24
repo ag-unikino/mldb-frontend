@@ -7,7 +7,19 @@
     "search": "Search"
   },
   "home": {
-    "title": "Home page"
+    "title": "Home page",
+    "headline": "Who holds the rights to a film?",
+    "recent": "Recent activity",
+    "activity": {
+      "newFilm": "New film",
+      "newRequest": "New request",
+      "granted": "Granted",
+      "edited": "Edited"
+    },
+    "myRequests": {
+      "title": "My requests",
+      "loggedOut": "Log in to see your cinema's open and past requests."
+    }
   },
   "search": {
     "title": "Search results",

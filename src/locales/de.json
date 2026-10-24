@@ -7,7 +7,19 @@
     "search": "Suche"
   },
   "home": {
-    "title": "Startseite"
+    "title": "Startseite",
+    "headline": "Wer hat die Rechte an einem Film?",
+    "recent": "Zuletzt aktiv",
+    "activity": {
+      "newFilm": "Neuer Film",
+      "newRequest": "Neue Anfrage",
+      "granted": "Zugesagt",
+      "edited": "Bearbeitet"
+    },
+    "myRequests": {
+      "title": "Meine Anfragen",
+      "loggedOut": "Melde dich an, um die laufenden und vergangenen Anfragen deines Kinos zu sehen."
+    }
   },
   "search": {
     "title": "Suchergebnisse",

@@ -3,10 +3,12 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest } from '../api/requests'
+import { useDateFormat } from '../composables/useDateFormat'
 
 const props = defineProps<{ requests: FilmRequest[] }>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
+const { formatDate, formatRelative } = useDateFormat()
 
 function answeredDate(request: FilmRequest): string {
   return request.answeredAt ?? request.requestedAt
@@ -31,28 +33,7 @@ const notice = computed(() => getActiveNote(distributor.value))
 
 const openCount = computed(() => props.requests.filter((r) => r.status === 'open').length)
 const declinedCount = computed(() => props.requests.filter((r) => r.status === 'declined').length)
-
-function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium', timeZone: 'UTC' }).format(
-    new Date(iso),
-  )
-}
-
-function relativeTime(iso: string): string {
-  const then = new Date(iso)
-  const now = new Date()
-  let months =
-    (now.getUTCFullYear() - then.getUTCFullYear()) * 12 + (now.getUTCMonth() - then.getUTCMonth())
-  if (now.getUTCDate() < then.getUTCDate()) months -= 1
-
-  const formatter = new Intl.RelativeTimeFormat(locale.value, { numeric: 'auto' })
-  if (months >= 12) return formatter.format(-Math.floor(months / 12), 'year')
-  if (months >= 1) return formatter.format(-months, 'month')
-  const days = Math.floor((now.getTime() - then.getTime()) / 86_400_000)
-  return formatter.format(-days, 'day')
-}
 </script>
-
 <template>
   <section v-if="requests.length" class="summary">
     <h2>{{ t('summary.title') }}</h2>
@@ -74,7 +55,7 @@ function relativeTime(iso: string): string {
         {{
           t('summary.answered', {
             date: formatDate(answeredDate(lastGranted)),
-            relative: relativeTime(answeredDate(lastGranted)),
+            relative: formatRelative(answeredDate(lastGranted)),
           })
         }}
       </p>

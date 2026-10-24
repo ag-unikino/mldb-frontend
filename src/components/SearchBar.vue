@@ -3,6 +3,8 @@ import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
+defineProps<{ large?: boolean }>()
+
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
@@ -24,7 +26,7 @@ function submit() {
 </script>
 
 <template>
-  <form @submit.prevent="submit">
+  <form :class="{ large }" @submit.prevent="submit">
     <input
       v-model="query"
       type="search"
@@ -43,5 +45,11 @@ form {
 input {
   flex: 1;
   min-width: 0;
+}
+
+.large input,
+.large button {
+  padding: var(--space-3) var(--space-4);
+  font-size: 1.125rem;
 }
 </style>
