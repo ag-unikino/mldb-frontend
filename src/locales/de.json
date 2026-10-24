@@ -4,7 +4,13 @@
   },
   "nav": {
     "home": "Start",
-    "search": "Suche"
+    "search": "Suche",
+    "distributors": "Verleiher",
+    "main": "Hauptnavigation"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "logout": "Abmelden"
   },
   "home": {
     "title": "Startseite",
@@ -18,7 +24,9 @@
     },
     "myRequests": {
       "title": "Meine Anfragen",
-      "loggedOut": "Melde dich an, um die laufenden und vergangenen Anfragen deines Kinos zu sehen."
+      "loggedOut": "Melde dich an, um die laufenden und vergangenen Anfragen deines Kinos zu sehen.",
+      "cinemas": "Deine Kinos: {cinemas}",
+      "empty": "Für deine Kinos gibt es noch keine Anfragen."
     }
   },
   "search": {

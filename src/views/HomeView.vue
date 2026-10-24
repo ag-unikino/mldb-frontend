@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import MyRequests from '../components/MyRequests.vue'
 import RecentActivity from '../components/RecentActivity.vue'
 import SearchBar from '../components/SearchBar.vue'
 
@@ -16,11 +17,7 @@ const { t } = useI18n()
     </section>
 
     <RecentActivity />
-
-    <section class="my-requests">
-      <h2>{{ t('home.myRequests.title') }}</h2>
-      <p>{{ t('home.myRequests.loggedOut') }}</p>
-    </section>
+    <MyRequests />
   </main>
 </template>
 
@@ -36,23 +33,5 @@ h1 {
 
 .hero-search {
   max-width: 40rem;
-}
-
-.my-requests {
-  margin-top: var(--space-6);
-  padding: var(--space-3) var(--space-4);
-  color: var(--color-text-muted);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius);
-}
-
-.my-requests h2 {
-  margin: 0 0 var(--space-2);
-  font-size: 1.125rem;
-  color: var(--color-text);
-}
-
-.my-requests p {
-  margin: 0;
 }
 </style>

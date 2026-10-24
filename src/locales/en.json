@@ -4,7 +4,13 @@
   },
   "nav": {
     "home": "Home",
-    "search": "Search"
+    "search": "Search",
+    "distributors": "Distributors",
+    "main": "Main navigation"
+  },
+  "auth": {
+    "login": "Log in",
+    "logout": "Log out"
   },
   "home": {
     "title": "Home page",
@@ -18,7 +24,9 @@
     },
     "myRequests": {
       "title": "My requests",
-      "loggedOut": "Log in to see your cinema's open and past requests."
+      "loggedOut": "Log in to see your cinema's open and past requests.",
+      "cinemas": "Your cinemas: {cinemas}",
+      "empty": "There are no requests for your cinemas yet."
     }
   },
   "search": {

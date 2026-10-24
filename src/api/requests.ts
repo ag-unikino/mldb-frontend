@@ -120,3 +120,9 @@ export function getGrantedFilmIds(distributorId: number): number[] {
     .map((request) => request.filmId)
   return [...new Set(ids)]
 }
+
+export function getRequestsForCinemas(cinemas: string[]): FilmRequest[] {
+  return requests
+    .filter((request) => cinemas.includes(request.cinema))
+    .sort((a, b) => b.requestedAt.localeCompare(a.requestedAt))
+}
