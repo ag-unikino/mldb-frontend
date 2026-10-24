@@ -81,5 +81,12 @@
     "counts": "Laufend: {open} · Abgelehnt: {declined}",
     "notice": "Hinweis zum Verleiher",
     "validUntil": "Gültig bis {date}"
+  },
+  "filmDetails": {
+    "title": "Filmdetails",
+    "germanRelease": "Deutscher Kinostart",
+    "worldPremiere": "Weltpremiere",
+    "versions": "Fassungen",
+    "comment": "Kommentar"
   }
 }

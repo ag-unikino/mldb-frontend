@@ -6,6 +6,7 @@ import { getFilmById, type FilmLinkSource } from '../api/films'
 import RequestsTable from '../components/RequestsTable.vue'
 import { getRequestsForFilm } from '../api/requests'
 import RequestSummary from '../components/RequestSummary.vue'
+import FilmDetails from '../components/FilmDetails.vue'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -57,6 +58,7 @@ const meta = computed(() => {
       </ul>
       <RequestSummary :requests="requests" />
       <RequestsTable :requests="requests" />
+      <FilmDetails :film="film" />
     </template>
     <p v-else>{{ t('film.notFound') }}</p>
   </main>

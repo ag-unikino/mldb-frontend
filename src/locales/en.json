@@ -81,5 +81,12 @@
     "counts": "Open: {open} · Declined: {declined}",
     "notice": "Distributor notice",
     "validUntil": "Valid until {date}"
+  },
+  "filmDetails": {
+    "title": "Film details",
+    "germanRelease": "German theatrical release",
+    "worldPremiere": "World premiere",
+    "versions": "Versions",
+    "comment": "Comment"
   }
 }

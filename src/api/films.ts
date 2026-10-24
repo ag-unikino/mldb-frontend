@@ -5,6 +5,12 @@ export interface FilmLink {
   url: string
 }
 
+export interface FilmVersion {
+  name: string
+  runtimeMinutes?: number
+  note?: string
+}
+
 export interface Film {
   id: number
   originalTitle: string
@@ -13,6 +19,10 @@ export interface Film {
   year: number
   fsk?: number
   runtimeMinutes?: number
+  germanRelease?: string
+  worldPremiere?: string
+  versions?: FilmVersion[]
+  comment?: string
   links?: FilmLink[]
   distributor: string
 }
@@ -32,6 +42,7 @@ const films: Film[] = [
     year: 1927,
     fsk: 12,
     runtimeMinutes: 150,
+    versions: [{ name: 'Restaurierte Fassung (2010)', runtimeMinutes: 150 }],
     distributor: 'Beispiel-Verleih A',
   },
   {
@@ -42,6 +53,17 @@ const films: Film[] = [
     year: 1953,
     fsk: 6,
     runtimeMinutes: 136,
+    worldPremiere: '1953-11-03',
+    germanRelease: '1965-06-01',
+    versions: [
+      { name: 'Originalfassung (OmU)', runtimeMinutes: 136, note: 'Restaurierte Fassung.' },
+      {
+        name: 'Gekürzte Kinofassung',
+        runtimeMinutes: 128,
+        note: 'Beispielnotiz: Verleihstatus unklar.',
+      },
+    ],
+    comment: 'Beispielkommentar: Bei Anfragen immer die restaurierte Fassung erwähnen.',
     links: [
       { source: 'imdb', url: 'https://www.imdb.com/' },
       { source: 'tmdb', url: 'https://www.themoviedb.org/' },
