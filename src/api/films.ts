@@ -1,8 +1,19 @@
+export type FilmLinkSource = 'imdb' | 'tmdb' | 'wikidata' | 'allscreens' | 'filmportal'
+
+export interface FilmLink {
+  source: FilmLinkSource
+  url: string
+}
+
 export interface Film {
   id: number
   originalTitle: string
+  englishTitle?: string
   germanTitle: string
   year: number
+  fsk?: number
+  runtimeMinutes?: number
+  links?: FilmLink[]
   distributor: string
 }
 
@@ -19,13 +30,24 @@ const films: Film[] = [
     originalTitle: 'Metropolis',
     germanTitle: 'Metropolis',
     year: 1927,
+    fsk: 12,
+    runtimeMinutes: 150,
     distributor: 'Beispiel-Verleih A',
   },
   {
     id: 3,
     originalTitle: 'Tokyo monogatari',
+    englishTitle: 'Tokyo Story',
     germanTitle: 'Reise nach Tokio',
     year: 1953,
+    fsk: 6,
+    runtimeMinutes: 136,
+    links: [
+      { source: 'imdb', url: 'https://www.imdb.com/' },
+      { source: 'tmdb', url: 'https://www.themoviedb.org/' },
+      { source: 'wikidata', url: 'https://www.wikidata.org/' },
+      { source: 'filmportal', url: 'https://www.filmportal.de/' },
+    ],
     distributor: 'Beispiel-Verleih B',
   },
   {

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 const query = ref('')
 
 watch(
@@ -26,10 +28,10 @@ function submit() {
     <input
       v-model="query"
       type="search"
-      :placeholder="$t('search.placeholder')"
-      :aria-label="$t('search.label')"
+      :placeholder="t('search.placeholder')"
+      :aria-label="t('search.label')"
     />
-    <button type="submit">{{ $t('search.button') }}</button>
+    <button type="submit">{{ t('search.button') }}</button>
   </form>
 </template>
 <style scoped>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import SearchBar from './components/SearchBar.vue'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <header class="app-header">
     <div class="container app-header__inner">
-      <RouterLink to="/" class="app-title">{{ $t('app.title') }}</RouterLink>
+      <RouterLink to="/" class="app-title">{{ t('app.title') }}</RouterLink>
       <SearchBar class="app-search" />
     </div>
   </header>

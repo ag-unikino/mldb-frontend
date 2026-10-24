@@ -22,6 +22,54 @@
     "germanTitle": "German title",
     "year": "Year",
     "distributor": "Distributor",
-    "notFound": "Film not found."
+    "notFound": "Film not found.",
+    "fsk": "FSK {rating}",
+    "minutes": "{minutes} min",
+    "links": "Research links"
+  },
+  "requests": {
+    "title": "Requests",
+    "empty": "Nobody has requested this film yet.",
+    "toggle": "Expand or collapse details",
+    "noticeMarker": "Current notice about the distributor",
+    "columns": {
+      "details": "Details",
+      "date": "Date",
+      "status": "Status",
+      "distributor": "Distributor",
+      "format": "Format",
+      "language": "Language",
+      "cinema": "Cinema"
+    },
+    "status": {
+      "open": "Open",
+      "granted": "Granted",
+      "declined": "Declined"
+    },
+    "formats": {
+      "film": "Film",
+      "bluray": "Blu-ray",
+      "dcp": "DCP"
+    },
+    "details": {
+      "answeredAt": "Answered on",
+      "contact": "Contact",
+      "noContact": "No contact on file.",
+      "adRights": "Advertising rights",
+      "comment": "Comment",
+      "declineReason": "Reason for decline",
+      "referredTo": "Referred to",
+      "distributorNotice": "Distributor notice"
+    }
+  },
+  "summary": {
+    "title": "Where to ask",
+    "answered": "Answered on {date} ({relative})",
+    "contact": "Contact",
+    "noContact": "No contact on file.",
+    "none": "No successful request yet.",
+    "counts": "Open: {open} · Declined: {declined}",
+    "notice": "Distributor notice",
+    "validUntil": "Valid until {date}"
   }
 }

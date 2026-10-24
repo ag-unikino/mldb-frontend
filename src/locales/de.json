@@ -22,6 +22,54 @@
     "germanTitle": "Deutscher Titel",
     "year": "Jahr",
     "distributor": "Verleiher",
-    "notFound": "Film nicht gefunden."
+    "notFound": "Film nicht gefunden.",
+    "fsk": "FSK {rating}",
+    "minutes": "{minutes} Min.",
+    "links": "Recherche-Links"
+  },
+  "requests": {
+    "title": "Anfragen",
+    "empty": "Zu diesem Film gibt es noch keine Anfragen.",
+    "toggle": "Details ein- oder ausklappen",
+    "noticeMarker": "Aktueller Hinweis zum Verleiher",
+    "columns": {
+      "details": "Details",
+      "date": "Datum",
+      "status": "Status",
+      "distributor": "Verleiher",
+      "format": "Format",
+      "language": "Sprache",
+      "cinema": "Kino"
+    },
+    "status": {
+      "open": "Laufend",
+      "granted": "Zugesagt",
+      "declined": "Abgelehnt"
+    },
+    "formats": {
+      "film": "Film",
+      "bluray": "Blu-ray",
+      "dcp": "DCP"
+    },
+    "details": {
+      "answeredAt": "Antwort am",
+      "contact": "Kontakt",
+      "noContact": "Kein Kontakt hinterlegt.",
+      "adRights": "Werberechte",
+      "comment": "Kommentar",
+      "declineReason": "Ablehnungsgrund",
+      "referredTo": "Verwiesen an",
+      "distributorNotice": "Hinweis zum Verleiher"
+    }
+  },
+  "summary": {
+    "title": "Wo anfragen?",
+    "answered": "Beantwortet am {date} ({relative})",
+    "contact": "Kontakt",
+    "noContact": "Kein Kontakt hinterlegt.",
+    "none": "Bisher keine erfolgreiche Anfrage.",
+    "counts": "Laufend: {open} · Abgelehnt: {declined}",
+    "notice": "Hinweis zum Verleiher",
+    "validUntil": "Gültig bis {date}"
   }
 }
