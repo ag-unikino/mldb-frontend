@@ -10,6 +10,12 @@
     "title": "Startseite"
   },
   "search": {
-    "title": "Suchergebnisse"
+    "title": "Suchergebnisse",
+    "placeholder": "Film suchen …",
+    "label": "Filmsuche",
+    "button": "Suchen",
+    "resultsFor": "Ergebnisse für „{query}“",
+    "noQuery": "Bitte einen Suchbegriff eingeben.",
+    "noResults": "Keine Treffer gefunden."
   }
 }

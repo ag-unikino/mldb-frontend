@@ -10,6 +10,12 @@
     "title": "Home page"
   },
   "search": {
-    "title": "Search results"
+    "title": "Search results",
+    "placeholder": "Search for a film …",
+    "label": "Film search",
+    "button": "Search",
+    "resultsFor": "Results for “{query}”",
+    "noQuery": "Please enter a search term.",
+    "noResults": "No results found."
   }
 }
