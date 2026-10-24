@@ -6,6 +6,7 @@ import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest, RequestStatus } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
 import { useMediaQuery } from '../composables/useMediaQuery'
+import { matches } from '../utils/text'
 
 type SortKey = 'date' | 'status' | 'distributor' | 'format' | 'language' | 'cinema'
 type SortDirection = 'asc' | 'desc'
@@ -80,15 +81,6 @@ function sortValue(request: FilmRequest, key: SortKey): string | number {
 function compareValues(a: string | number, b: string | number): number {
   if (typeof a === 'number' && typeof b === 'number') return a - b
   return String(a).localeCompare(String(b), locale.value)
-}
-
-function normalize(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim()
-}
-
-function matches(text: string, filter: string): boolean {
-  const needle = normalize(filter)
-  return needle === '' || normalize(text).includes(needle)
 }
 
 const visibleRequests = computed(() => {
@@ -199,7 +191,9 @@ function sortIndicator(key: SortKey): string {
             </span>
           </div>
           <p class="card-distributor">
-            {{ distributorName(request.distributorId) }}
+            <RouterLink :to="{ name: 'distributor', params: { id: request.distributorId } }">{{
+              distributorName(request.distributorId)
+            }}</RouterLink>
             <span
               v-if="noticeFor(request.distributorId)"
               class="notice-marker"
@@ -266,7 +260,10 @@ function sortIndicator(key: SortKey): string {
                   </span>
                 </td>
                 <td>
-                  {{ distributorName(request.distributorId) }}
+                  <RouterLink
+                    :to="{ name: 'distributor', params: { id: request.distributorId } }"
+                    >{{ distributorName(request.distributorId) }}</RouterLink
+                  >
                   <span
                     v-if="noticeFor(request.distributorId)"
                     class="notice-marker"

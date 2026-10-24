@@ -100,5 +100,17 @@
     "worldPremiere": "Weltpremiere",
     "versions": "Fassungen",
     "comment": "Kommentar"
+  },
+  "distributors": {
+    "title": "Verleiher",
+    "filter": "Verleiher filtern",
+    "noMatches": "Kein Verleiher passt zum Filter.",
+    "filmCount": "kein Film | ein Film | {count} Filme",
+    "notFound": "Verleiher nicht gefunden.",
+    "contacts": "Kontakte",
+    "noContacts": "Keine Kontakte hinterlegt.",
+    "info": "Informationen",
+    "films": "Filme",
+    "noFilms": "Bisher keine Filme mit zugesagter Anfrage."
   }
 }

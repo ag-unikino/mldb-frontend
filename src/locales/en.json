@@ -100,5 +100,17 @@
     "worldPremiere": "World premiere",
     "versions": "Versions",
     "comment": "Comment"
+  },
+  "distributors": {
+    "title": "Distributors",
+    "filter": "Filter distributors",
+    "noMatches": "No distributor matches the filter.",
+    "filmCount": "no films | one film | {count} films",
+    "notFound": "Distributor not found.",
+    "contacts": "Contacts",
+    "noContacts": "No contacts on file.",
+    "info": "Information",
+    "films": "Films",
+    "noFilms": "No films with a granted request yet."
   }
 }

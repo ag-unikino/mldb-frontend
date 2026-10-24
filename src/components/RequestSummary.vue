@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { getActiveNote, getDistributorById } from '../api/distributors'
 import type { FilmRequest } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
+import DistributorNotice from './DistributorNotice.vue'
 
 const props = defineProps<{ requests: FilmRequest[] }>()
 
@@ -39,18 +40,12 @@ const declinedCount = computed(() => props.requests.filter((r) => r.status === '
     <h2>{{ t('summary.title') }}</h2>
     <template v-if="lastGranted">
       <p class="main">
-        <strong>{{ distributorName }}</strong>
+        <RouterLink :to="{ name: 'distributor', params: { id: lastGranted.distributorId } }">
+          <strong>{{ distributorName }}</strong>
+        </RouterLink>
         · {{ t('requests.formats.' + lastGranted.format) }} · {{ lastGranted.language }}
       </p>
-      <p v-if="notice" class="notice">
-        <span class="notice-icon" role="img" :aria-label="t('summary.notice')">⚠</span>
-        <span>
-          {{ notice.text }}
-          <span v-if="notice.validUntil" class="subtle">
-            ({{ t('summary.validUntil', { date: formatDate(notice.validUntil) }) }})
-          </span>
-        </span>
-      </p>
+      <DistributorNotice v-if="notice" :note="notice" />
       <p class="subtle">
         {{
           t('summary.answered', {
@@ -97,18 +92,5 @@ p {
 
 .counts {
   margin-top: var(--space-2);
-}
-
-.notice {
-  display: flex;
-  gap: var(--space-2);
-  margin: var(--space-2) 0;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-warning);
-  border-radius: var(--radius);
-}
-
-.notice-icon {
-  color: var(--color-warning);
 }
 </style>

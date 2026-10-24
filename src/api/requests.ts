@@ -95,10 +95,28 @@ const requests: FilmRequest[] = [
     language: 'OV',
     cinema: 'Beispiel-Kino X',
   },
+  {
+    id: 7,
+    filmId: 1,
+    distributorId: 1,
+    status: 'granted',
+    requestedAt: '2024-03-05',
+    answeredAt: '2024-03-10',
+    format: 'dcp',
+    language: 'OV',
+    cinema: 'Beispiel-Kino Z',
+  },
 ]
 
 export function getRequestsForFilm(filmId: number): FilmRequest[] {
   return requests
     .filter((request) => request.filmId === filmId)
     .sort((a, b) => b.requestedAt.localeCompare(a.requestedAt))
+}
+
+export function getGrantedFilmIds(distributorId: number): number[] {
+  const ids = requests
+    .filter((request) => request.distributorId === distributorId && request.status === 'granted')
+    .map((request) => request.filmId)
+  return [...new Set(ids)]
 }
