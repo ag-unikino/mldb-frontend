@@ -4,8 +4,10 @@ import { useI18n } from 'vue-i18n'
 import { getActiveNote, getAllDistributors } from '../api/distributors'
 import { getGrantedFilmIds } from '../api/requests'
 import { matches } from '../utils/text'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t, locale } = useI18n()
+usePageTitle(() => t('distributors.title'))
 
 const filter = ref('')
 

@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { searchFilms } from '../api/films'
 import FilmPoster from '../components/FilmPoster.vue'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -12,6 +13,10 @@ const query = computed(() => {
   const q = route.query.q
   return typeof q === 'string' ? q : ''
 })
+
+usePageTitle(() =>
+  query.value ? t('search.resultsFor', { query: query.value }) : t('search.title'),
+)
 
 const results = computed(() =>
   searchFilms(query.value).map((film) => {

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-defineProps<{ title: string }>()
+import { usePageTitle } from '../composables/usePageTitle'
+const props = defineProps<{ title: string }>()
+
+usePageTitle(() => props.title)
 </script>
 
 <template>

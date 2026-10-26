@@ -8,6 +8,7 @@ import { getGrantedFilmIds } from '../api/requests'
 import DistributorNotice from '../components/DistributorNotice.vue'
 import LockedHint from '../components/LockedHint.vue'
 import { useAuthStore } from '../stores/auth'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -17,6 +18,8 @@ const distributor = computed(() => {
   const id = Number(route.params.id)
   return Number.isInteger(id) ? getDistributorById(id) : undefined
 })
+
+usePageTitle(() => distributor.value?.name ?? t('distributors.notFound'))
 
 const notice = computed(() => getActiveNote(distributor.value))
 

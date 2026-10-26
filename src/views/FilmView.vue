@@ -7,6 +7,7 @@ import RequestsTable from '../components/RequestsTable.vue'
 import { getRequestsForFilm } from '../api/requests'
 import RequestSummary from '../components/RequestSummary.vue'
 import FilmDetails from '../components/FilmDetails.vue'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -15,6 +16,7 @@ const film = computed(() => {
   const id = Number(route.params.id)
   return Number.isInteger(id) ? getFilmById(id) : undefined
 })
+usePageTitle(() => film.value?.originalTitle ?? t('film.notFound'))
 const requests = computed(() => (film.value ? getRequestsForFilm(film.value.id) : []))
 
 const linkLabels: Record<FilmLinkSource, string> = {

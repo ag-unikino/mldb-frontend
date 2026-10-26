@@ -6,12 +6,14 @@ import { getFilmById } from '../api/films'
 import { getRequestById } from '../api/requests'
 import RequestForm from '../components/RequestForm.vue'
 import { useAuthStore } from '../stores/auth'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t } = useI18n()
 const route = useRoute()
 const auth = useAuthStore()
 
 const isEdit = computed(() => route.name === 'request-edit')
+usePageTitle(() => (isEdit.value ? t('requestForm.titleEdit') : t('requestForm.titleNew')))
 
 const request = computed(() => {
   if (!isEdit.value) return undefined

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import tmdbLogo from '../assets/tmdb-logo.svg'
+import { usePageTitle } from '../composables/usePageTitle'
 
 type DeveloperRole = 'frontend' | 'backend'
 
 const { t } = useI18n()
+usePageTitle(() => t('about.title'))
 
 const developers: { name: string; role: DeveloperRole }[] = [
   { name: 'Simon Pfannschmidt', role: 'frontend' },

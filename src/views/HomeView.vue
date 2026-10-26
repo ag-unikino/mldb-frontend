@@ -3,8 +3,10 @@ import { useI18n } from 'vue-i18n'
 import MyRequests from '../components/MyRequests.vue'
 import RecentActivity from '../components/RecentActivity.vue'
 import SearchBar from '../components/SearchBar.vue'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t } = useI18n()
+usePageTitle()
 </script>
 
 <template>
