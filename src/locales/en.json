@@ -150,6 +150,12 @@
     "tmdb": "Part of the film data comes from TMDB (The Movie Database).",
     "tmdbLogoAlt": "TMDB"
   },
+  "notFoundPage": {
+    "title": "Page not found",
+    "text": "This address does not exist:",
+    "hint": "A link may have changed or there may be a typo. You can find films with the search above.",
+    "home": "Go to the home page"
+  },
   "requestForm": {
     "titleNew": "New request",
     "titleEdit": "Edit request",
