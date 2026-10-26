@@ -122,5 +122,10 @@
     "info": "Information",
     "films": "Films",
     "noFilms": "No films with a granted request yet."
+  },
+  "footer": {
+    "label": "Legal",
+    "imprint": "Legal notice",
+    "privacy": "Privacy policy"
   }
 }

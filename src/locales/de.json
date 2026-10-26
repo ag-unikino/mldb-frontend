@@ -122,5 +122,10 @@
     "info": "Informationen",
     "films": "Filme",
     "noFilms": "Bisher keine Filme mit zugesagter Anfrage."
+  },
+  "footer": {
+    "label": "Rechtliches",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
   }
 }

@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import SearchBar from './components/SearchBar.vue'
 import { SUPPORTED_LOCALES, setLocale, type AppLocale } from './i18n'
 import { useAuthStore } from './stores/auth'
+import AppFooter from './components/AppFooter.vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -15,40 +16,43 @@ function onLocaleChange(event: Event) {
 </script>
 
 <template>
-  <header class="app-header">
-    <div class="container app-header__inner">
-      <RouterLink to="/" class="app-title">{{ t('app.title') }}</RouterLink>
-      <SearchBar v-if="route.name !== 'home'" class="app-search" />
-      <div class="app-end">
-        <nav class="app-nav" :aria-label="t('nav.main')">
-          <RouterLink :to="{ name: 'distributors' }">{{ t('nav.distributors') }}</RouterLink>
-        </nav>
-        <div class="app-account">
-          <template v-if="auth.isLoggedIn">
-            <span class="account-name">{{ auth.account?.name }}</span>
-            <button type="button" class="account-button" @click="auth.logout()">
-              {{ t('auth.logout') }}
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="container app-header__inner">
+        <RouterLink to="/" class="app-title">{{ t('app.title') }}</RouterLink>
+        <SearchBar v-if="route.name !== 'home'" class="app-search" />
+        <div class="app-end">
+          <nav class="app-nav" :aria-label="t('nav.main')">
+            <RouterLink :to="{ name: 'distributors' }">{{ t('nav.distributors') }}</RouterLink>
+          </nav>
+          <div class="app-account">
+            <template v-if="auth.isLoggedIn">
+              <span class="account-name">{{ auth.account?.name }}</span>
+              <button type="button" class="account-button" @click="auth.logout()">
+                {{ t('auth.logout') }}
+              </button>
+            </template>
+            <button v-else type="button" class="account-button" @click="auth.login()">
+              {{ t('auth.login') }}
             </button>
-          </template>
-          <button v-else type="button" class="account-button" @click="auth.login()">
-            {{ t('auth.login') }}
-          </button>
+          </div>
+          <select
+            class="lang-select"
+            :value="locale"
+            :aria-label="t('app.language')"
+            @change="onLocaleChange"
+          >
+            <option v-for="code in SUPPORTED_LOCALES" :key="code" :value="code" :lang="code">
+              {{ code.toUpperCase() }}
+            </option>
+          </select>
         </div>
-        <select
-          class="lang-select"
-          :value="locale"
-          :aria-label="t('app.language')"
-          @change="onLocaleChange"
-        >
-          <option v-for="code in SUPPORTED_LOCALES" :key="code" :value="code" :lang="code">
-            {{ code.toUpperCase() }}
-          </option>
-        </select>
       </div>
+    </header>
+    <div class="container page">
+      <RouterView />
     </div>
-  </header>
-  <div class="container page">
-    <RouterView />
+    <AppFooter />
   </div>
 </template>
 
@@ -121,7 +125,16 @@ function onLocaleChange(event: Event) {
   border-color: var(--color-border);
 }
 
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 .page {
+  flex: 1;
+  width: 100%;
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
 }
