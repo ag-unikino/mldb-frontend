@@ -129,7 +129,25 @@
   "footer": {
     "label": "Rechtliches",
     "imprint": "Impressum",
-    "privacy": "Datenschutz"
+    "privacy": "Datenschutz",
+    "about": "Über / Credits"
+  },
+  "about": {
+    "title": "Über / Credits",
+    "who": {
+      "title": "Wer steht dahinter",
+      "bkf": "Das Projekt entsteht im Bundesverband kommunale Filmarbeit e.V. (BkF). Der BkF ist der Dachverband der kommunalen Kinos in Deutschland und vernetzt filmkulturelle Initiativen und Einrichtungen.",
+      "agUnikino": "Es ist ein Vorhaben der AG Unikino im BkF.",
+      "bkfLink": "Mehr zum BkF"
+    },
+    "developers": {
+      "title": "Entwicklung",
+      "frontend": "Frontend",
+      "backend": "Backend"
+    },
+    "sources": "Datenquellen",
+    "tmdb": "Ein Teil der Filmdaten stammt von TMDB (The Movie Database).",
+    "tmdbLogoAlt": "TMDB"
   },
   "requestForm": {
     "titleNew": "Neue Anfrage",

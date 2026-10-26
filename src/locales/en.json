@@ -129,7 +129,25 @@
   "footer": {
     "label": "Legal",
     "imprint": "Legal notice",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "about": "About / Credits"
+  },
+  "about": {
+    "title": "About / Credits",
+    "who": {
+      "title": "Who is behind this",
+      "bkf": "The project is being developed within the Bundesverband kommunale Filmarbeit e.V. (BkF), the German federation of municipal cinemas, which also connects film-cultural initiatives and institutions.",
+      "agUnikino": "It is an initiative of the AG Unikino within the BkF.",
+      "bkfLink": "More about the BkF"
+    },
+    "developers": {
+      "title": "Development",
+      "frontend": "Frontend",
+      "backend": "Backend"
+    },
+    "sources": "Data sources",
+    "tmdb": "Part of the film data comes from TMDB (The Movie Database).",
+    "tmdbLogoAlt": "TMDB"
   },
   "requestForm": {
     "titleNew": "New request",

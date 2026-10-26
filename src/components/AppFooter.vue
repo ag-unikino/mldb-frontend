@@ -9,6 +9,7 @@ const { t } = useI18n()
     <div class="container app-footer__inner">
       <span>{{ t('app.title') }}</span>
       <nav :aria-label="t('footer.label')">
+        <RouterLink :to="{ name: 'about' }">{{ t('footer.about') }}</RouterLink>
         <RouterLink :to="{ name: 'imprint' }">{{ t('footer.imprint') }}</RouterLink>
         <RouterLink :to="{ name: 'privacy' }">{{ t('footer.privacy') }}</RouterLink>
       </nav>
