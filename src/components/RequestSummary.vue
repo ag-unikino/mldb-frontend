@@ -7,6 +7,7 @@ import { useDateFormat } from '../composables/useDateFormat'
 import DistributorNotice from './DistributorNotice.vue'
 import { useAuthStore } from '../stores/auth'
 import LockedHint from './LockedHint.vue'
+import { formatLabel } from '../constants/requestOptions'
 
 const props = defineProps<{ requests: FilmRequest[] }>()
 
@@ -46,7 +47,7 @@ const declinedCount = computed(() => props.requests.filter((r) => r.status === '
         <RouterLink :to="{ name: 'distributor', params: { id: lastGranted.distributorId } }">
           <strong>{{ distributorName }}</strong>
         </RouterLink>
-        · {{ t('requests.formats.' + lastGranted.format) }} · {{ lastGranted.language }}
+        · {{ formatLabel(lastGranted.format) }} · {{ lastGranted.language }}
       </p>
       <DistributorNotice v-if="notice" :note="notice" />
       <p class="subtle">
@@ -59,8 +60,11 @@ const declinedCount = computed(() => props.requests.filter((r) => r.status === '
       </p>
       <p v-if="!auth.isLoggedIn">{{ t('summary.contact') }}: <LockedHint /></p>
       <p v-else-if="lastGranted.contact">
-        {{ t('summary.contact') }}: {{ lastGranted.contact.name }} ·
-        <a :href="'mailto:' + lastGranted.contact.email">{{ lastGranted.contact.email }}</a>
+        {{ t('summary.contact') }}: {{ lastGranted.contact.name }}
+        <template v-if="lastGranted.contact.email">
+          ·
+          <a :href="'mailto:' + lastGranted.contact.email">{{ lastGranted.contact.email }}</a>
+        </template>
       </p>
       <p v-else class="subtle">{{ t('summary.noContact') }}</p>
     </template>

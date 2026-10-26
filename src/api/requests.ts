@@ -1,9 +1,10 @@
+import type { FilmFormat } from '../constants/requestOptions'
+
 export type RequestStatus = 'open' | 'granted' | 'declined'
-export type FilmFormat = 'film' | 'bluray' | 'dcp'
 
 export interface Contact {
   name: string
-  email: string
+  email?: string
 }
 
 export interface FilmRequest {
@@ -125,4 +126,25 @@ export function getRequestsForCinemas(cinemas: string[]): FilmRequest[] {
   return requests
     .filter((request) => cinemas.includes(request.cinema))
     .sort((a, b) => b.requestedAt.localeCompare(a.requestedAt))
+}
+
+export type NewRequest = Omit<FilmRequest, 'id'>
+
+export function getRequestById(id: number): FilmRequest | undefined {
+  return requests.find((request) => request.id === id)
+}
+
+export function createRequest(data: NewRequest): Promise<FilmRequest> {
+  const nextId = Math.max(0, ...requests.map((request) => request.id)) + 1
+  const request: FilmRequest = { ...data, id: nextId }
+  requests.push(request)
+  return Promise.resolve(request)
+}
+
+export function updateRequest(id: number, data: NewRequest): Promise<FilmRequest | undefined> {
+  const index = requests.findIndex((request) => request.id === id)
+  if (index === -1) return Promise.resolve(undefined)
+  const updated: FilmRequest = { ...data, id }
+  requests[index] = updated
+  return Promise.resolve(updated)
 }

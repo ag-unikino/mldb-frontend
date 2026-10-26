@@ -39,8 +39,11 @@ function distributorName(id: number): string {
       <dt>{{ t('requests.details.contact') }}</dt>
       <dd v-if="!auth.isLoggedIn"><LockedHint /></dd>
       <dd v-else-if="request.contact">
-        {{ request.contact.name }} ·
-        <a :href="'mailto:' + request.contact.email">{{ request.contact.email }}</a>
+        {{ request.contact.name }}
+        <template v-if="request.contact.email">
+          ·
+          <a :href="'mailto:' + request.contact.email">{{ request.contact.email }}</a>
+        </template>
       </dd>
       <dd v-else class="subtle">{{ t('requests.details.noContact') }}</dd>
       <template v-if="request.adRights">

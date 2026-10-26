@@ -9,6 +9,7 @@ import { useMediaQuery } from '../composables/useMediaQuery'
 import { matches } from '../utils/text'
 import { useAuthStore } from '../stores/auth'
 import ActionLink from './ActionLink.vue'
+import { formatLabel } from '../constants/requestOptions'
 
 type SortKey = 'date' | 'status' | 'distributor' | 'format' | 'language' | 'cinema'
 type SortDirection = 'asc' | 'desc'
@@ -75,7 +76,7 @@ function sortValue(request: FilmRequest, key: SortKey): string | number {
     case 'distributor':
       return distributorName(request.distributorId)
     case 'format':
-      return t('requests.formats.' + request.format)
+      return formatLabel(request.format)
     case 'language':
       return request.language
     case 'cinema':
@@ -223,11 +224,7 @@ watch(
           </p>
           <p class="subtle">
             {{
-              [
-                t('requests.formats.' + request.format),
-                request.language,
-                auth.isLoggedIn ? request.cinema : '',
-              ]
+              [formatLabel(request.format), request.language, auth.isLoggedIn ? request.cinema : '']
                 .filter(Boolean)
                 .join(' · ')
             }}
@@ -299,7 +296,7 @@ watch(
                     >⚠</span
                   >
                 </td>
-                <td>{{ t('requests.formats.' + request.format) }}</td>
+                <td>{{ formatLabel(request.format) }}</td>
                 <td>{{ request.language }}</td>
                 <td v-if="auth.isLoggedIn">{{ request.cinema }}</td>
               </tr>

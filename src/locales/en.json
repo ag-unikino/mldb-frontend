@@ -86,11 +86,6 @@
       "granted": "Granted",
       "declined": "Declined"
     },
-    "formats": {
-      "film": "Film",
-      "bluray": "Blu-ray",
-      "dcp": "DCP"
-    },
     "details": {
       "answeredAt": "Answered on",
       "contact": "Contact",
@@ -135,5 +130,31 @@
     "label": "Legal",
     "imprint": "Legal notice",
     "privacy": "Privacy policy"
+  },
+  "requestForm": {
+    "titleNew": "New request",
+    "titleEdit": "Edit request",
+    "loginRequired": "You need to be logged in to create or edit requests.",
+    "notFound": "Request not found.",
+    "noPermission": "This request belongs to a cinema that is not part of your account. You cannot edit it.",
+    "requiredNote": "Fields marked with * are required.",
+    "film": "Film",
+    "requestedAt": "Request date",
+    "languageHint": "For example OV, OmU, DF",
+    "choose": "Please choose",
+    "none": "No referral",
+    "contactLegend": "Contact person (optional)",
+    "contactName": "Name",
+    "contactEmail": "Email",
+    "save": "Save",
+    "saving": "Saving …",
+    "cancel": "Cancel",
+    "saveFailed": "The request could not be saved. Please try again.",
+    "leaveConfirm": "You have unsaved changes. Really leave this page?",
+    "errors": {
+      "required": "Required field.",
+      "answerBeforeRequest": "The answer date is before the request date.",
+      "email": "This is not a valid email address."
+    }
   }
 }

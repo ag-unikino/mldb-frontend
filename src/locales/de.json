@@ -86,11 +86,6 @@
       "granted": "Zugesagt",
       "declined": "Abgelehnt"
     },
-    "formats": {
-      "film": "Film",
-      "bluray": "Blu-ray",
-      "dcp": "DCP"
-    },
     "details": {
       "answeredAt": "Antwort am",
       "contact": "Kontakt",
@@ -135,5 +130,31 @@
     "label": "Rechtliches",
     "imprint": "Impressum",
     "privacy": "Datenschutz"
+  },
+  "requestForm": {
+    "titleNew": "Neue Anfrage",
+    "titleEdit": "Anfrage bearbeiten",
+    "loginRequired": "Zum Anlegen und Bearbeiten von Anfragen musst du angemeldet sein.",
+    "notFound": "Anfrage nicht gefunden.",
+    "noPermission": "Diese Anfrage gehört zu einem Kino, das nicht zu deinem Konto gehört. Du kannst sie nicht bearbeiten.",
+    "requiredNote": "Mit * markierte Felder sind Pflichtfelder.",
+    "film": "Film",
+    "requestedAt": "Anfragedatum",
+    "languageHint": "Zum Beispiel OV, OmU, DF",
+    "choose": "Bitte wählen",
+    "none": "Kein Verweis",
+    "contactLegend": "Ansprechperson (optional)",
+    "contactName": "Name",
+    "contactEmail": "E-Mail",
+    "save": "Speichern",
+    "saving": "Speichert …",
+    "cancel": "Abbrechen",
+    "saveFailed": "Die Anfrage konnte nicht gespeichert werden. Bitte versuche es noch einmal.",
+    "leaveConfirm": "Es gibt ungespeicherte Änderungen. Seite wirklich verlassen?",
+    "errors": {
+      "required": "Pflichtfeld.",
+      "answerBeforeRequest": "Das Antwortdatum liegt vor dem Anfragedatum.",
+      "email": "Das ist keine gültige E-Mail-Adresse."
+    }
   }
 }
