@@ -19,8 +19,8 @@ const hasContent = computed(
 </script>
 
 <template>
-  <details v-if="hasContent" class="film-details">
-    <summary>{{ t('filmDetails.title') }}</summary>
+  <section v-if="hasContent" class="film-details" aria-labelledby="film-details-heading">
+    <h2 id="film-details-heading">{{ t('filmDetails.title') }}</h2>
 
     <dl v-if="film.worldPremiere || film.germanRelease" class="info">
       <template v-if="film.worldPremiere">
@@ -50,7 +50,7 @@ const hasContent = computed(
       <h3>{{ t('filmDetails.comment') }}</h3>
       <p class="comment">{{ film.comment }}</p>
     </template>
-  </details>
+  </section>
 </template>
 
 <style scoped>
@@ -62,10 +62,9 @@ const hasContent = computed(
   border-radius: var(--radius);
 }
 
-summary {
-  cursor: pointer;
+h2 {
+  margin: 0 0 var(--space-2);
   font-size: 1.125rem;
-  font-weight: 700;
 }
 
 h3 {
@@ -77,7 +76,7 @@ h3 {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: var(--space-1) var(--space-6);
-  margin: var(--space-3) 0 0;
+  margin: 0;
 }
 
 .info dt {

@@ -45,7 +45,8 @@ const { t } = useI18n()
 
 h1 {
   margin: 0 0 var(--space-4);
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  line-height: 1.2;
 }
 
 .intro {
