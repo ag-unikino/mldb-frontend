@@ -57,7 +57,7 @@ const meta = computed(() => {
         </li>
       </ul>
       <RequestSummary :requests="requests" />
-      <RequestsTable :requests="requests" />
+      <RequestsTable :requests="requests" :film-id="film.id" />
       <FilmDetails :film="film" />
     </template>
     <p v-else>{{ t('film.notFound') }}</p>

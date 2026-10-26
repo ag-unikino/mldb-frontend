@@ -57,6 +57,8 @@
   },
   "requests": {
     "title": "Requests",
+    "new": "+ New request",
+    "edit": "Edit",
     "sortBy": "Sort by",
     "sortDirection": "Reverse sort order",
     "noMatches": "No requests match the filters.",

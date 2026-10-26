@@ -57,6 +57,8 @@
   },
   "requests": {
     "title": "Anfragen",
+    "new": "+ Neue Anfrage",
+    "edit": "Bearbeiten",
     "sortBy": "Sortieren nach",
     "sortDirection": "Sortierrichtung umkehren",
     "noMatches": "Keine Anfragen passen zu den Filtern.",

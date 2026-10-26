@@ -6,6 +6,7 @@ import { getFilmById } from '../api/films'
 import { getRequestsForCinemas } from '../api/requests'
 import { useDateFormat } from '../composables/useDateFormat'
 import { useAuthStore } from '../stores/auth'
+import ActionLink from './ActionLink.vue'
 
 const { t } = useI18n()
 const { formatDate } = useDateFormat()
@@ -25,7 +26,12 @@ function distributorName(id: number): string {
 
 <template>
   <section class="my-requests" :class="{ placeholder: !auth.isLoggedIn }">
-    <h2>{{ t('home.myRequests.title') }}</h2>
+    <div class="heading">
+      <h2>{{ t('home.myRequests.title') }}</h2>
+      <ActionLink v-if="auth.isLoggedIn" :to="{ name: 'request-new' }">
+        {{ t('requests.new') }}
+      </ActionLink>
+    </div>
     <template v-if="auth.isLoggedIn">
       <p class="subtle">
         {{ t('home.myRequests.cinemas', { cinemas: auth.account?.cinemas.join(', ') }) }}
@@ -41,6 +47,9 @@ function distributorName(id: number): string {
             {{ distributorName(request.distributorId) }} ·
             {{ t('requests.status.' + request.status) }}
           </span>
+          <RouterLink :to="{ name: 'request-edit', params: { id: request.id } }">
+            {{ t('requests.edit') }}
+          </RouterLink>
         </li>
       </ul>
     </template>
@@ -62,8 +71,16 @@ function distributorName(id: number): string {
   border-style: dashed;
 }
 
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
 h2 {
-  margin: 0 0 var(--space-2);
+  margin: 0;
   font-size: 1.125rem;
 }
 

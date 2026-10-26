@@ -6,6 +6,7 @@ import DistributorsView from '../views/DistributorsView.vue'
 import DistributorView from '../views/DistributorView.vue'
 import ImprintView from '../views/ImprintView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
+import RequestFormView from '../views/RequestFormView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,16 @@ const router = createRouter({
       path: '/privacy',
       name: 'privacy',
       component: PrivacyView,
+    },
+    {
+      path: '/requests/new',
+      name: 'request-new',
+      component: RequestFormView,
+    },
+    {
+      path: '/requests/:id/edit',
+      name: 'request-edit',
+      component: RequestFormView,
     },
   ],
   scrollBehavior(_to, _from, savedPosition) {

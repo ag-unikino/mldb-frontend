@@ -8,13 +8,14 @@ import { useDateFormat } from '../composables/useDateFormat'
 import { useMediaQuery } from '../composables/useMediaQuery'
 import { matches } from '../utils/text'
 import { useAuthStore } from '../stores/auth'
+import ActionLink from './ActionLink.vue'
 
 type SortKey = 'date' | 'status' | 'distributor' | 'format' | 'language' | 'cinema'
 type SortDirection = 'asc' | 'desc'
 
 const CARD_LAYOUT_QUERY = '(pointer: coarse) and (orientation: portrait) and (max-width: 700px)'
 
-const props = defineProps<{ requests: FilmRequest[] }>()
+const props = defineProps<{ requests: FilmRequest[]; filmId?: number }>()
 
 const { t, locale } = useI18n()
 const { formatDate } = useDateFormat()
@@ -148,7 +149,12 @@ watch(
 
 <template>
   <section>
-    <h2>{{ t('requests.title') }}</h2>
+    <div class="heading">
+      <h2>{{ t('requests.title') }}</h2>
+      <ActionLink v-if="auth.isLoggedIn" :to="{ name: 'request-new', query: { filmId } }">
+        {{ t('requests.new') }}
+      </ActionLink>
+    </div>
     <p v-if="requests.length === 0" class="empty">{{ t('requests.empty') }}</p>
     <template v-else>
       <div class="filters">
@@ -315,8 +321,16 @@ section {
   margin-top: var(--space-6);
 }
 
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
 h2 {
-  margin: 0 0 var(--space-3);
+  margin: 0;
   font-size: 1.125rem;
 }
 
