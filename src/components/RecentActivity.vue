@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { getRecentActivity } from '../api/activity'
 import { getFilmById } from '../api/films'
 import { useDateFormat } from '../composables/useDateFormat'
+import FilmPoster from './FilmPoster.vue'
 
 const { t } = useI18n()
 const { formatRelative } = useDateFormat()
@@ -14,10 +15,6 @@ const items = computed(() =>
     return film ? [{ ...item, film }] : []
   }),
 )
-
-function posterHue(id: number): number {
-  return (id * 47) % 360
-}
 </script>
 
 <template>
@@ -26,9 +23,11 @@ function posterHue(id: number): number {
     <ul class="row">
       <li v-for="item in items" :key="item.id">
         <RouterLink :to="{ name: 'film', params: { id: item.film.id } }" class="item">
-          <span class="poster" :style="{ '--hue': posterHue(item.film.id) }" aria-hidden="true">
-            {{ item.film.originalTitle }}
-          </span>
+          <FilmPoster
+            :id="item.film.id"
+            :title="item.film.originalTitle"
+            :poster-path="item.film.posterPath"
+          />
           <span class="title">{{ item.film.originalTitle }}</span>
           <span class="meta">
             {{ t('home.activity.' + item.type) }} · {{ formatRelative(item.at) }}
@@ -61,26 +60,12 @@ h2 {
 .item {
   display: grid;
   gap: var(--space-1);
+  min-width: 0;
   color: var(--color-text);
   text-decoration: none;
 }
 
-.poster {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 2 / 3;
-  padding: var(--space-2);
-  overflow: hidden;
-  font-weight: 600;
-  text-align: center;
-  color: #fff;
-  background: hsl(var(--hue) 30% 30%);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-}
-
-.item:hover .poster {
+.item:hover :deep(.poster) {
   border-color: var(--color-primary);
 }
 

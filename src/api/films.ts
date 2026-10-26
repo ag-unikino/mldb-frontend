@@ -24,7 +24,7 @@ export interface Film {
   versions?: FilmVersion[]
   comment?: string
   links?: FilmLink[]
-  distributor: string
+  posterPath?: string
 }
 
 const films: Film[] = [
@@ -33,7 +33,6 @@ const films: Film[] = [
     originalTitle: 'Das Cabinet des Dr. Caligari',
     germanTitle: 'Das Cabinet des Dr. Caligari',
     year: 1920,
-    distributor: 'Beispiel-Verleih A',
   },
   {
     id: 2,
@@ -43,7 +42,7 @@ const films: Film[] = [
     fsk: 12,
     runtimeMinutes: 150,
     versions: [{ name: 'Restaurierte Fassung (2010)', runtimeMinutes: 150 }],
-    distributor: 'Beispiel-Verleih A',
+    posterPath: '/vODOVn29fr0nLF9MVfpfKDcxuXF.jpg',
   },
   {
     id: 3,
@@ -70,35 +69,30 @@ const films: Film[] = [
       { source: 'wikidata', url: 'https://www.wikidata.org/' },
       { source: 'filmportal', url: 'https://www.filmportal.de/' },
     ],
-    distributor: 'Beispiel-Verleih B',
   },
   {
     id: 4,
     originalTitle: 'Les quatre cents coups',
     germanTitle: 'Sie küssten und sie schlugen ihn',
     year: 1959,
-    distributor: 'Beispiel-Verleih B',
   },
   {
     id: 5,
     originalTitle: 'Persona',
     germanTitle: 'Persona',
     year: 1966,
-    distributor: 'Beispiel-Verleih C',
   },
   {
     id: 6,
     originalTitle: 'Das Boot',
     germanTitle: 'Das Boot',
     year: 1981,
-    distributor: 'Beispiel-Verleih C',
   },
   {
     id: 7,
     originalTitle: 'Lola rennt',
     germanTitle: 'Lola rennt',
     year: 1998,
-    distributor: 'Beispiel-Verleih D',
   },
 ]
 

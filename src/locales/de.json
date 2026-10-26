@@ -44,7 +44,8 @@
     "button": "Suchen",
     "resultsFor": "Ergebnisse für „{query}“",
     "noQuery": "Bitte einen Suchbegriff eingeben.",
-    "noResults": "Keine Treffer gefunden."
+    "noResults": "Keine Treffer gefunden.",
+    "resultCount": "kein Treffer | ein Treffer | {count} Treffer"
   },
   "film": {
     "germanTitle": "Deutscher Titel",
