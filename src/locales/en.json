@@ -17,6 +17,12 @@
   "home": {
     "title": "Home page",
     "headline": "Who holds the rights to a film?",
+    "intro": {
+      "title": "What is this about?",
+      "what": "Cinemas collect their experiences with film distributors here: who distributes a film, who answered requests, which formats were possible and whom to contact.",
+      "who": "The entries come from the cinemas themselves. The database is a voluntary service with no profit motive. Contact details and the names of requesting cinemas are visible after logging in.",
+      "caveat": "All information may be outdated or incomplete. When in doubt, ask the distributor directly."
+    },
     "recent": "Recent activity",
     "activity": {
       "newFilm": "New film",

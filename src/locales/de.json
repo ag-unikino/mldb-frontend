@@ -17,6 +17,12 @@
   "home": {
     "title": "Startseite",
     "headline": "Wer hat die Rechte an einem Film?",
+    "intro": {
+      "title": "Worum geht es hier?",
+      "what": "Hier sammeln Kinos ihre Erfahrungen mit Filmverleihern: wer einen Film verleiht, wer auf Anfragen geantwortet hat, welche Formate möglich waren und an wen man sich wenden kann.",
+      "who": "Die Einträge stammen von den Kinos selbst. Die Datenbank ist ein freiwilliges Angebot ohne Gewinnabsicht. Kontaktdaten und die Namen der anfragenden Kinos sind nach der Anmeldung sichtbar.",
+      "caveat": "Alle Angaben können veraltet oder unvollständig sein. Im Zweifel hilft eine direkte Nachfrage beim Verleih."
+    },
     "recent": "Zuletzt aktiv",
     "activity": {
       "newFilm": "Neuer Film",
